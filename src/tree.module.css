@@ -5,7 +5,7 @@
   & .line{
 
     font-size: 1rem;
-    padding: 2px 0;
+    padding: 5px 0;
     padding-left: 1rem;
 
     &>button, &>div{
@@ -67,13 +67,22 @@
       /* border-left: 1px solid #4e4e4e; */
       overflow: hidden;
       
+      & > .inner{ 
+        overflow: hidden;
+        padding: 0px 0;
+        transition: padding 200ms ease-out;
+      }
+
       &.open{
         grid-template-rows: 1fr;
         margin-bottom: 3px;
+
+        & > .inner{ 
+          padding: 5px 0;
+        }
       }
 
 
-      & .inner{ overflow: hidden; }
     }
 
 

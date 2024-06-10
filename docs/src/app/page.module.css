@@ -1,0 +1,52 @@
+.main {
+
+}
+
+.first{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.docs{
+  scroll-margin-top: 12px;
+}
+
+a.docsLink{
+  margin-top: 4rem;
+  text-decoration: underline;
+}
+
+.header{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  text-align: center;
+  padding: 21px 0;
+  font-size: 2rem;
+  letter-spacing: -2px;
+  z-index: 1;
+  /* outline: 1px solid red; */
+
+  & a{
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    animation-fill-mode: both;
+    background-color: rgba(0,0,0,.6);
+    backdrop-filter: blur(3px);
+  }
+
+}

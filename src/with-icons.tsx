@@ -7,15 +7,17 @@ export function TreeWithIcons({
   className,
 }:{ 
   tree: Tree 
-  className: string,
+  className?: string,
 }){
+
+
 
   return <TreeStructure 
     tree={tree}
     className={className}
-    IconFolderOpen={FolderOpen}
-    IconFolder={Folder}
-    IconFile={FileIcon}
+    iconFolderOpen={<FolderOpen />}
+    iconFolder={<Folder />}
+    iconFile={<FileIcon />}
   />
 
 }
