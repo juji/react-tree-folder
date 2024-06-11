@@ -1,4 +1,16 @@
 # React Tree Folder
 
-- v -
+<p style="width: 100%">
+  <img src="https://raw.githubusercontent.com/juji/react-tree-folder/dev/blob/rtf.gif" 
+    width="750"
+    height="510"
+    style="max-width:100%;height: auto;"
+  />
+</p>
+
+<p style="text-align:center; margin: 2rem 0;">
+  <a href="https://rtf.jujiplay.com" 
+  rel="noopenner no referrer"
+  target="_blank">Check the docs</a>
+</p>
 
