@@ -9,7 +9,7 @@
     padding-left: 1rem;
     color: var(--rtrifo-color, inherit);
 
-    &>button, &>div{
+    &>button, &>div, &>a{
       
       display: flex;
       align-items: center;

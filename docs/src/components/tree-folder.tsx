@@ -81,14 +81,16 @@ const treeFolder:Tree = [
         onClick: () => alert('With onClick handler, this will need to be a client component')
       },
       {
+        text: 'a link',
+        link: {
+          href: 'https://asdf.com',
+          newTab: true
+        },
+        onClick: () => alert('This is a link')
+      },
+      {
         text: 'any component',
         component: (text) => <AnyComponent text={text} />
-        /*
-        (
-          { text }:
-          { text: string | ReactElement }
-        ) => ReactElement
-        */
       }
     ]
   },

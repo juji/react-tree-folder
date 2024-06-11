@@ -65,6 +65,14 @@ export type Branch = {
   // using onClick will render a button
   onClick?: () => void
 
+  // using link will render an anchor
+  // using link and onClick, 
+  // will also render an anchor
+  link?:{
+    href: string,
+    newTab?: boolean
+  }
+
   // custom component
   component?: (text: string) => ReactNode
   
@@ -282,6 +290,37 @@ export function OnClickHandler() {
 
 <Separator />
 
+## Link
+
+```tsx
+const treeFolder:Tree = [
+  {
+    text: 'link',
+    link: {
+      href: 'https://asdf.com',
+
+      // optional
+      newTab: true
+    },
+
+    // also optional
+    onClick: () => alert('this is a link')
+  },
+]
+
+export function ALink() {
+  return (
+    <TreeFolder tree={treeFolder}  />
+  );
+}
+```
+
+### Link Result
+
+<ALink />
+
+<Separator />
+
 ## Container Class
 
 ```tsx
@@ -357,17 +396,17 @@ vite v5.2.13 building for production...
 ✓ 6 modules transformed.
 
 [vite:dts] Start generate declaration files...
-dist/style.css         0.99 kB │ gzip: 0.46 kB
+dist/style.css         1.00 kB │ gzip: 0.46 kB
 dist/no-icons.js       0.11 kB │ gzip: 0.13 kB │ map: 0.09 kB
-dist/tree-DEeCCF3B.js  2.78 kB │ gzip: 0.88 kB │ map: 6.01 kB
+dist/tree-BLYGG2w9.js  3.17 kB │ gzip: 0.96 kB │ map: 6.73 kB
 dist/index.js          4.09 kB │ gzip: 1.10 kB │ map: 5.55 kB
-[vite:dts] Declaration files built in 389ms.
+[vite:dts] Declaration files built in 411ms.
 
-dist/style.css          0.99 kB │ gzip: 0.46 kB
+dist/style.css          1.00 kB │ gzip: 0.46 kB
 dist/no-icons.cjs       0.19 kB │ gzip: 0.18 kB │ map: 0.09 kB
-dist/tree-D0MhTMhd.cjs  1.68 kB │ gzip: 0.68 kB │ map: 5.53 kB
+dist/tree-BuXyW1-b.cjs  1.87 kB │ gzip: 0.75 kB │ map: 6.18 kB
 dist/index.cjs          3.43 kB │ gzip: 1.05 kB │ map: 5.20 kB
-✓ built in 495ms
+✓ built in 516ms
 ```
 
 Last built locally. The packages built in CI may result in similar sizes.
@@ -381,3 +420,5 @@ import { ContainerClass } from "./container-class"
 import Separator from './separator'
 import { CustomIcons } from "./custom-icons"
 import { CustomColors } from './custom-colors'
+import { ALink } from './link'
+

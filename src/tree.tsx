@@ -9,6 +9,10 @@ export type Branch = {
   dir?: boolean
   icon?: ReactNode
   onClick?: () => void
+  link?:{
+    href: string,
+    newTab?: boolean
+  }
   component?: (text: string) => ReactNode
   branch?: Tree
   color?: string
@@ -46,7 +50,8 @@ function BranchLine({
   const { 
     icon, dir, text, 
     branch: children, 
-    onClick, component,
+    onClick, link,
+    component,
     color,
     hoverColor,
   } = branch
@@ -69,6 +74,15 @@ function BranchLine({
       {component ? component(text) : <span>{text}</span>}
     </button> : 
     
+    link ? <a href={link.href} 
+      {...link.newTab?{
+        target: "_blank", rel: "noreferref noopener"
+      }:{}} 
+      {...onClick? { onClick } : {}}>
+      <span>{icon||iconFile||null}</span>
+      {component ? component(text) : <span>{text}</span>}
+    </a> :
+
     onClick ? <button 
       style={{
         ...hoverColor ? {['--rtrifo-hover-color' as string]: hoverColor}:{},
