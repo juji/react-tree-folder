@@ -17,5 +17,4 @@
 
 React Tree Folder is a React component to create folder structures. It supports custom icons, colors, and more.. 
 
-
-- juji
+\- juji
