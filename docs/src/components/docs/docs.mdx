@@ -1,0 +1,386 @@
+## Installation
+
+```bash
+npm i react-tree-folder # or bun, or pnpm
+```
+
+## Simple Usage
+
+```tsx
+import { TreeFolder, type Tree } from 'react-tree-folder'
+
+// import this in your global layout
+// if you use this on multiple pages
+import 'react-tree-folder/dist/style.css' 
+
+const tree : Tree = [
+  {
+    text: 'Some Folder',
+    dir: true,
+
+    // a directory may be open by default
+    open: true,
+
+    // a directory may contain
+    // other directories or files
+    branch: [
+      {
+        text: 'Sub Folder',
+        dir: true,
+      },
+      {
+        text: 'Sub File',
+      }
+    ]
+  },
+  {
+    text: 'Some File',
+  }
+]
+
+export function SimpleUsageExample(){
+  return <TreeFolder tree={tree} />
+}
+```
+
+### Simple Usage Result
+
+<SimpleUsageExample />
+
+<Separator />
+## Types
+
+```ts
+
+export type Branch = {
+  
+  text: string
+  open?: boolean
+  dir?: boolean
+
+  // custom icon
+  // for files
+  icon?: ReactNode 
+  
+  // using onClick will render a button
+  onClick?: () => void
+
+  // custom component
+  component?: (text: string) => ReactNode
+  
+  branch?: Tree
+
+  // coloring works individualy
+  color?: string
+  hoverColor?: string
+
+}
+
+export type Tree = Branch[]
+
+// without icons
+// import { TreeFolder } from 'react-tree-folder/dist/no-icons'
+export type ReactTreeFolderProps = { 
+  tree: Tree 
+  iconFolderOpen: ReactNode
+  iconFolder: ReactNode
+  iconFile?: ReactNode
+
+  // coloring works globaly
+  color?: string
+  hoverColor?: string
+  borderColor?: string
+
+  containerClass?: string
+}
+
+// with default icon
+// import { TreeFolder } from 'react-tree-folder'
+// this is the one we are using in the example above
+export type ReactTreeWithIconsProps = {
+  tree: Tree 
+  color?: string
+
+  // coloring works globaly
+  hoverColor?: string
+  borderColor?: string
+
+  containerClass?: string
+}
+
+```
+<Separator />
+
+## Custom File Icon
+```tsx
+// Customize how the file icons look like
+const treeFolder:Tree = [
+  {
+    text: 'default icon'
+  },
+  {
+    text: 'unicode icon',
+    icon: '⚽'
+  },
+  {
+    text: 'react element as icon',
+    icon: <i style={{color:'orange', marginRight: '5px'}}>Hi</i>
+  },
+]
+
+export function CustomFileIcons() {
+  return (
+    <TreeFolder tree={treeFolder} />
+  );
+}
+```
+
+### Custom File Icons Result
+
+<CustomFileIcons />
+
+<Separator />
+
+## Custom Component
+
+```tsx
+import { TypeAnimation } from 'react-type-animation';
+
+function MyAnimatedText({ text }:{ text: string }){
+
+  return <TypeAnimation
+    sequence={[
+      'One', // Types 'One'
+      1000, // Waits 1s
+      'Two', // Deletes 'One' and types 'Two'
+      2000, // Waits 2s
+      text, // Types text
+      3000 // wait 3s
+    ]}
+    wrapper="span"
+    cursor={true}
+    repeat={Infinity}
+  />
+
+}
+
+const treeFolder:Tree = [
+  {
+    text: 'aFile',
+    component: (text) => <MyAnimatedText text={text} />
+  },
+  {
+    text: 'aButtonFile',
+    component: (text) => <MyAnimatedText text={text} />,
+    onClick: () => alert('Hey, you!')
+  },
+  {
+    text: 'aDir',
+    component: (text) => <MyAnimatedText text={text} />,
+    dir: true,
+    open: true,
+    branch: [{ text: 'just a regular file' }]
+  },
+]
+
+export function CustomComponent() {
+  return (
+    <TreeFolder tree={treeFolder} />
+  );
+}
+```
+
+### Custom Component Result
+
+<CustomComponent />
+
+<Separator />
+
+## Custom Colors
+```tsx
+const treeFolder:Tree = [
+  {
+    text: 'custom color',
+    dir: true,
+    branch: [{ text: 'content' }],
+
+    // coloring for specific item
+    color: 'greenyellow',
+    hoverColor: 'lightskyblue',
+  },
+
+  {
+    text: 'file with custom color',
+    color: 'greenyellow',
+
+    // note the hover don't work
+    // since this is not a button 
+    // (no onClick attribute)
+    hoverColor: 'lightskyblue',
+  },
+
+  {
+    text: 'global color',
+    dir: true,
+    branch: [{ text: 'content' }],
+  },
+  {
+    text: 'file',
+  },
+
+]
+
+export function CustomColors() {
+  return (
+    <TreeFolder 
+      tree={treeFolder} 
+      
+      // coloring for all item
+      color='hotpink'
+      hoverColor='yellow'
+
+      // to color the side-line
+      borderColor='cyan'
+
+
+    />
+  );
+}
+```
+
+### Custom Colors Result
+<CustomColors />
+
+<Separator />
+
+## OnClick Handler
+
+```tsx
+const treeFolder:Tree = [
+  {
+    text: 'on a file',
+    onClick: () => alert('Clicked on a file!')
+  },
+  {
+    text: 'on a folder',
+    onClick: () => alert('Clicked on a folder!'),
+    dir: true,
+    branch: [{ text: 'folder content' }]
+  }
+]
+
+export function OnClickHandler() {
+  return (
+    <TreeFolder tree={treeFolder} />
+  );
+}
+```
+
+### Onclick Handler Result
+
+<OnClickHandler />
+
+<Separator />
+
+## Container Class
+
+```tsx
+import { css } from '@emotion/css'
+
+const borderedBox = css`
+  border-radius: 1rem;
+  border: 1px solid #42b342;
+  padding: 1rem;
+`
+
+const treeFolder:Tree = [
+  {
+    text: 'folder',
+    dir: true,
+    branch: [{ text: 'content' }]
+  },
+  {
+    text: 'file',
+    icon: '🥧'
+  },
+]
+
+export function ContainerClass() {
+  return (
+    <TreeFolder 
+      tree={treeFolder} 
+      containerClass={borderedBox} />
+  );
+}
+```
+
+### Container Class Result
+<ContainerClass />
+
+<Separator />
+
+## Custom Icon
+```tsx
+// use the no-icons variant
+import { TreeFolder, type Tree } from 'react-tree-folder/dist/no-icons'
+import SvgFileIcon from './svg-file-icon'
+
+const treeFolder:Tree = [
+  {
+    text: 'open this folder',
+    dir: true,
+    branch: [{ text: 'this is a file '}]
+  }
+]
+
+export function CustomIcons(){
+
+  return <TreeFolder 
+    tree={treeFolder}
+    iconFolder={'📁'}
+    iconFolderOpen={'📂'}
+    iconFile={<SvgFileIcon />}
+  />
+
+}
+```
+
+### Custom Icon Result
+<CustomIcons />
+
+<Separator />
+
+## File Sizes
+
+```bash
+vite v5.2.13 building for production...
+✓ 6 modules transformed.
+
+[vite:dts] Start generate declaration files...
+dist/style.css         0.99 kB │ gzip: 0.46 kB
+dist/no-icons.js       0.11 kB │ gzip: 0.13 kB │ map: 0.09 kB
+dist/tree-DEeCCF3B.js  2.78 kB │ gzip: 0.88 kB │ map: 6.01 kB
+dist/index.js          4.09 kB │ gzip: 1.10 kB │ map: 5.55 kB
+[vite:dts] Declaration files built in 389ms.
+
+dist/style.css          0.99 kB │ gzip: 0.46 kB
+dist/no-icons.cjs       0.19 kB │ gzip: 0.18 kB │ map: 0.09 kB
+dist/tree-D0MhTMhd.cjs  1.68 kB │ gzip: 0.68 kB │ map: 5.53 kB
+dist/index.cjs          3.43 kB │ gzip: 1.05 kB │ map: 5.20 kB
+✓ built in 495ms
+```
+
+Last built locally. The packages built in CI may result in similar sizes.
+
+
+
+
+
+import { SimpleUsageExample } from './simple-usage-example'
+import { CustomFileIcons } from './custom-file-icons'
+import { OnClickHandler } from "./on-click-handler"
+import { CustomComponent } from "./custom-component"
+import { ContainerClass } from "./container-class"
+import Separator from './separator'
+import { CustomIcons } from "./custom-icons"
+import { CustomColors } from './custom-colors'

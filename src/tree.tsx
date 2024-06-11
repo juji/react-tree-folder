@@ -1,19 +1,32 @@
 'use client'
 
 import styles from './tree.module.css'
-import { ReactElement, ReactNode, useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 export type Branch = {
-  text: string | ReactElement
+  text: string
   open?: boolean
   dir?: boolean
   icon?: ReactNode
   onClick?: () => void
-  component?: (text: string | ReactElement) => ReactNode
+  component?: (text: string) => ReactNode
   branch?: Tree
+  color?: string
+  hoverColor?: string
 }
 
 export type Tree = Branch[]
+
+export type ReactTreeFolderProps = { 
+  tree: Tree 
+  iconFolderOpen: ReactNode
+  iconFolder: ReactNode
+  iconFile?: ReactNode
+  color?: string
+  hoverColor?: string
+  borderColor?: string
+  containerClass?: string
+}
 
 function BranchLine({ 
   branch,
@@ -30,20 +43,46 @@ function BranchLine({
 }){
 
   const [ open, setOpen ] = useState(branch.open)
-  const { icon, dir, text, branch: children, onClick, component } = branch
+  const { 
+    icon, dir, text, 
+    branch: children, 
+    onClick, component,
+    color,
+    hoverColor,
+  } = branch
 
   return <div className={`${styles.line}`}>
 
-    {dir ? <button onClick={() => setOpen(!open)}>
+    {dir ? <button 
+      style={{
+        ...hoverColor ? {['--rtrifo-hover-color' as string]: hoverColor}:{},
+        ...color ? {['--rtrifo-color' as string]: color}:{}
+      }}
+      onClick={() => {
+        setOpen(!open)
+        onClick && onClick()
+      }}>
       <span>{ open ? 
         iconFolderOpen :
         iconFolder
       }</span>
-      <span>{text}</span>
-    </button> : onClick ? <button onClick={onClick}>
+      {component ? component(text) : <span>{text}</span>}
+    </button> : 
+    
+    onClick ? <button 
+      style={{
+        ...hoverColor ? {['--rtrifo-hover-color' as string]: hoverColor}:{},
+        ...color ? {['--rtrifo-color' as string]: color}:{}
+      }}
+      onClick={onClick}>
       <span>{icon||iconFile||null}</span>
-      <span>{text}</span>
-    </button> : <div>
+      {component ? component(text) : <span>{text}</span>}
+    </button> : 
+    
+    <div style={{
+      ...hoverColor ? {['--rtrifo-hover-color' as string]: hoverColor}:{},
+      ...color ? {['--rtrifo-color' as string]: color}:{}
+    }}>
       <span>{icon||iconFile||null}</span>
       {component ? component(text) : <span>{text}</span>}
     </div>}
@@ -68,19 +107,21 @@ function BranchLine({
 
 export function TreeStructure({ 
   tree,
-  className,
   iconFolderOpen,
   iconFolder,
-  iconFile
-}:{ 
-  tree: Tree 
-  className?: string,
-  iconFolderOpen: ReactNode
-  iconFolder: ReactNode
-  iconFile?: ReactNode
-}){
+  iconFile,
+  color,
+  hoverColor,
+  borderColor,
+  containerClass,
+}:ReactTreeFolderProps){
 
-  return <div className={`${className} ${styles.tree}`}>
+  return <div style={{
+      ...borderColor ? {['--rtrifo-border-color' as string]: borderColor}:{},
+      ...hoverColor ? {['--rtrifo-hover-color' as string]: hoverColor}:{},
+      ...color ? {['--rtrifo-color' as string]: color}:{}
+    }} 
+    className={`${containerClass||''} ${styles.tree}`}>
     {tree.map((v,k) => <BranchLine 
       iconFolderOpen={iconFolderOpen}
       iconFolder={iconFolder}

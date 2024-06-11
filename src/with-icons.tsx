@@ -2,22 +2,31 @@
 import { FileIcon, FolderOpen, Folder } from './icons';
 import { TreeStructure, type Tree } from './tree';
 
+export type ReactTreeWithIconsProps = {
+  tree: Tree 
+  color?: string
+  hoverColor?: string
+  borderColor?: string
+  containerClass?: string
+}
+
 export function TreeWithIcons({ 
   tree,
-  className,
-}:{ 
-  tree: Tree 
-  className?: string,
-}){
-
-
+  color,
+  hoverColor,
+  borderColor,
+  containerClass,
+}:ReactTreeWithIconsProps){
 
   return <TreeStructure 
     tree={tree}
-    className={className}
+    containerClass={containerClass}
     iconFolderOpen={<FolderOpen />}
     iconFolder={<Folder />}
     iconFile={<FileIcon />}
+    color={color}
+    hoverColor={hoverColor}
+    borderColor={borderColor}
   />
 
 }

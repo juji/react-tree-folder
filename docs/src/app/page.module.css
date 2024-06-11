@@ -11,12 +11,14 @@
 }
 
 .docs{
-  scroll-margin-top: 12px;
+  scroll-margin-top: 84px;
 }
 
 a.docsLink{
   margin-top: 4rem;
   text-decoration: underline;
+  text-decoration-color: tomato;
+  text-underline-offset: 5px;
 }
 
 .header{
@@ -26,14 +28,18 @@ a.docsLink{
   width: 100%;
   text-align: center;
   padding: 21px 0;
-  font-size: 2rem;
   letter-spacing: -2px;
   z-index: 1;
   /* outline: 1px solid red; */
 
+  & h1{
+    font-size: 2rem;
+  }
+
   & a{
     position: relative;
     z-index: 1;
+    margin: 0 auto;
   }
 
   &::before{
@@ -44,9 +50,23 @@ a.docsLink{
     top: 0px;
     left: 0px;
     z-index: 0;
-    animation-fill-mode: both;
-    background-color: rgba(0,0,0,.6);
-    backdrop-filter: blur(3px);
+    /* background-color: rgb(var(--background-rgb) / 60%); */
+    background-color: rgba(22, 22, 22, 60%);
+    backdrop-filter: blur(8px);
   }
 
+}
+
+.footer{
+  text-align: center;
+  padding: 4rem 0;
+  margin-top: 4rem;
+  background: #1f2324;
+  font-size: 0.9rem;
+
+  & a{
+    text-decoration: underline;
+    text-decoration-color: tomato;
+    text-underline-offset: 2px;
+  }
 }
