@@ -3,6 +3,7 @@ import rehypeShiki from '@shikijs/rehype'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import toc from '@jsdevtools/rehype-toc'
+import wrap from 'rehype-wrap'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,8 +22,10 @@ const withMDX = createMDX({
       [rehypeShiki, {
         theme: 'github-dark'
       }],
+      [wrap, {wrapper: 'div.markdown-body'}],
       [toc, {
-        headings: ['h2']
+        headings: ['h2'],
+        position: "beforeend"
       }]
     ],
   },

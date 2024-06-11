@@ -1,9 +1,10 @@
 'use client'
 
 import Link from "next/link";
-import { TreeFolder, type Tree, type Branch } from 'react-tree-folder'
+import { TreeFolder, type Tree } from 'react-tree-folder'
 import 'react-tree-folder/dist/style.css'
 import { ReactElement, useEffect, useRef, useState } from "react";
+import { primaryInput } from 'detect-it';
 
 // text: string | ReactElement
 // open?: boolean
@@ -40,6 +41,21 @@ function AnyComponent({ text }:{ text: string | ReactElement }): ReactElement {
         (85 + 10 * Math.random()) + '%)'
     }}}
   >{linkText}</Link>
+
+}
+
+function OnHoverCase({ text }:{ text: string }){
+
+  const [ hover, setHover ] = useState(false)
+
+  return <span 
+    onMouseEnter={()=>setHover(true)}
+    onMouseOut={()=>setHover(false)}
+  >
+    { hover ? (
+      primaryInput === 'touch' ? 'on touch too!' : 'on mouse over too!' 
+    ): text }
+    </span>
 
 }
 
@@ -97,6 +113,17 @@ const treeFolder:Tree = [
         text: 'file'
       }
     ]
+  },
+  {
+    text: 'custom color',
+    dir: true,
+    color: 'hotpink',
+    hoverColor: 'yellow',
+    component: (text) => <OnHoverCase text={text} />,
+    branch: [{ 
+      text: 'works on a file too',
+      color: 'cyan',
+    }]
   }
 ]
 

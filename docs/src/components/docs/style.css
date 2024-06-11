@@ -1,0 +1,131 @@
+
+h2, h3, h4{
+  padding: 1rem 0;
+  scroll-margin-top: 84px;
+
+  a:hover{
+    text-decoration: underline;
+  }
+}
+
+h2{
+  padding-top: 2rem;
+}
+
+pre.shiki{
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  overflow: auto;
+}
+
+nav.toc{
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(22, 22, 22, 80%);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgb(55,55,55);
+
+  display: grid;
+  grid-template-columns: 0fr;
+  grid-template-rows: 0fr;
+  padding: 0;
+  transition: all 200ms 300ms ease-out;
+
+  ol{
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 200ms 0ms ease-out;
+  }
+
+  &.open{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 2rem;
+    transition: all 200ms 0ms ease-out;
+    ol{
+      opacity: 1;
+      transition: opacity 200ms 300ms ease-out;
+    }
+  }
+
+  li{
+    list-style: none;
+    margin-bottom: 1rem;
+
+    & a:hover{
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: #989898;
+    }
+
+    & a.active{
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: tomato;
+    }
+
+  }
+
+}
+
+@media screen and (min-width: 540px){
+  nav.toc{
+    width: auto;
+    right: 21px;
+    bottom: 21px;
+    border-radius: 8px;
+    border: 1px solid rgb(55,55,55);
+  }
+}
+
+@media screen and (min-width: 1207px){
+
+  .markdown-body{
+    /* position: relative; */
+  }
+
+  nav.toc{
+
+    padding: 0;
+    border: 0;
+    position: sticky;
+    top: 84px;
+    padding-left: 42px;
+    padding-top: 21px;
+    display: block;
+    height: 360px;
+    transition: all 200ms 0ms ease-out;
+    /* outline: 1px dotted red; */
+    
+    & > ol{
+      opacity: 1;
+      /* outline: 1px dotted yellow; */
+      transition: opacity 200ms 300ms ease-out;
+    }
+  
+    li{
+
+      font-size: 0.9rem;
+      margin-bottom: 8px;      
+  
+      & a:hover{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-color: #989898;
+      }
+  
+      & a.active{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-color: tomato;
+      }
+    }
+  }
+
+}

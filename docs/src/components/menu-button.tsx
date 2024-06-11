@@ -42,7 +42,7 @@ export function MenuButton(){
         background-color: #fb4d2e;
       }
 
-      @media screen and (min-width: 1140px){
+      @media screen and (min-width: 1207px){
         display: none;
       }
     `}>
