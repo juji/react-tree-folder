@@ -3,8 +3,8 @@
 <p style="width: 100%">
   <img src="https://media.githubusercontent.com/media/juji/react-tree-folder/dev/blob/rtf.gif" 
     width="750"
-    height="510"
-    style="max-width:100%;height: auto;"
+    height="auto"
+    style="max-width:100%;"
   />
 </p>
 
