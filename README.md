@@ -8,7 +8,7 @@
   />
 </p>
 
-<p style="text-align:center; margin: 2rem 0;">
+<p align="center">
   <a href="https://rtf.jujiplay.com" 
   rel="noopenner no referrer"
   target="_blank">Check the docs</a>
