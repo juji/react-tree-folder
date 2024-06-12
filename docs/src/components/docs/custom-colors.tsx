@@ -1,4 +1,5 @@
 import { TreeFolder, type Tree } from 'react-tree-folder'
+import { css } from '@emotion/css';
 
 const treeFolder:Tree = [
   {
@@ -32,6 +33,12 @@ const treeFolder:Tree = [
 
 ]
 
+const borderedBox = css`
+  background-color: #24292e;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+`
+
 export function CustomColors() {
   return (
     <TreeFolder 
@@ -43,6 +50,8 @@ export function CustomColors() {
 
       // to color the side-line
       borderColor='cyan'
+
+      containerClass={borderedBox}
 
 
     />

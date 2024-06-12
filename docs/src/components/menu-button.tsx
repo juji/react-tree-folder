@@ -7,16 +7,32 @@ import { useState } from 'react'
 export function MenuButton(){
 
   const [ isOpen, setIsOpen ] = useState(false)
-  function onClick(){
-    const toc = document.querySelector('nav.toc')
-    if(toc) {
-      
-      if(toc.classList.contains('open')) setIsOpen(false)
-      else setIsOpen(true)
-
-      toc.classList.toggle('open')
-
+  
+  function activateLinks(){
+    const links = document.querySelectorAll('.nav-container nav a')
+    function linkClicked(){
+      onClick()
+      links.forEach(link => {
+        link.removeEventListener('click',linkClicked)
+      })
     }
+
+    links.forEach(link => {
+      link.addEventListener('click',linkClicked)
+    })
+  }
+
+  function onClick(){
+    const toc = document.querySelector('.nav-container')
+    if(!toc) return;
+      
+    if(toc.classList.contains('open')) setIsOpen(false)
+    else {
+      setIsOpen(true)
+      activateLinks()
+    }
+
+    toc.classList.toggle('open')
   }
 
 

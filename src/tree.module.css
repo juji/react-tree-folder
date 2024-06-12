@@ -4,9 +4,12 @@
 
   & .line{
 
+    .line{
+      padding-left: 1rem;
+    }
+
     font-size: 1rem;
     padding: 5px 0;
-    padding-left: 1rem;
     color: var(--rtrifo-color, inherit);
 
     &>button, &>div, &>a{

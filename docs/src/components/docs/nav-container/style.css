@@ -1,0 +1,140 @@
+
+
+.nav-container{
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: light-dark(rgba(240, 240, 240, 0.9), rgba(22, 22, 22, 80%));
+  backdrop-filter: blur(8px);
+  border-top: 1px solid light-dark(rgb(205, 205, 205), rgb(55,55,55));
+
+  display: grid;
+  grid-template-columns: 0fr;
+  grid-template-rows: 0fr;
+  padding: 0;
+  transition: all 200ms 300ms ease-out;
+
+  .lights{
+    margin-top: 0px;
+    display: grid;
+    grid-template-rows: 0fr;
+    min-height: 0px;
+    transition: all 200ms 400ms ease;
+    .lights-child{ 
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
+      &>span{
+        font-size: small;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  nav.toc{
+  
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 200ms 0ms ease-out;
+  
+    li{
+      list-style: none;
+      margin-bottom: 1rem;
+  
+      & a:hover{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-color: #989898;
+      }
+  
+      & a.active{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-color: tomato;
+      }
+  
+    }
+  
+  }
+
+  &.open{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 2rem;
+    transition: all 200ms 0ms ease-out;
+    nav.toc{
+      opacity: 1;
+      transition: opacity 200ms 300ms ease-out;
+    }
+    .lights{
+      min-height: 26px;
+      margin-top: 21px;
+      grid-template-rows: 1fr;
+      transition: all 200ms 100ms ease-out;
+    }
+  }
+}
+
+@media screen and (min-width: 540px){
+  .nav-container{
+    width: auto;
+    right: 21px;
+    bottom: 21px;
+    border-radius: 8px;
+    border: 1px solid light-dark(rgb(205, 205, 205), rgb(55,55,55));
+  }
+}
+  
+@media screen and (min-width: 1207px){
+
+  .nav-container{
+
+    padding: 0;
+    border: 0;
+    position: sticky;
+    top: 84px;
+    padding-left: 42px;
+    padding-top: 21px;
+    display: block;
+    height: 360px;
+    transition: all 200ms 0ms ease-out;
+    background-color: transparent;
+
+    .lights{
+      min-height: 26px;
+      margin-top: 21px;
+      grid-template-rows: 1fr;
+      transition: all 200ms 0ms ease-out;
+    }
+    
+    nav.toc{
+      opacity: 1;
+      transition: opacity 200ms 300ms ease-out;
+
+      li{
+
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    
+        & a:hover{
+          text-decoration: underline;
+          text-underline-offset: 5px;
+          text-decoration-color: #989898;
+        }
+    
+        & a.active{
+          text-decoration: underline;
+          text-underline-offset: 5px;
+          text-decoration-color: tomato;
+        }
+      }
+    }
+  
+  }
+
+}

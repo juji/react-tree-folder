@@ -1,6 +1,11 @@
 :root {
   --foreground-rgb: rgb(233, 233, 233);
-  --background-rgb: 22, 22, 22;
+  --background-rgb: rgb(22, 22, 22);
+}
+
+[data-theme=light]{
+  --foreground-rgb: #252525;
+  --background-rgb: rgb(233, 233, 233);
 }
 
 * {
@@ -22,7 +27,7 @@ body {
   position: relative; /*  for sticky element to work */
   overflow-y: scroll;
   color: var(--foreground-rgb);
-  background: rgb(var(--background-rgb));
+  background: var(--background-rgb);
 }
 
 a {

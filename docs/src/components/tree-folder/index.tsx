@@ -5,6 +5,7 @@ import { TreeFolder, type Tree } from 'react-tree-folder'
 import 'react-tree-folder/dist/style.css'
 import { ReactElement, useEffect, useRef, useState } from "react";
 import { primaryInput } from 'detect-it';
+import styles from './style.module.css'
 
 // text: string | ReactElement
 // open?: boolean
@@ -131,6 +132,8 @@ const treeFolder:Tree = [
 
 export function TreeFolderComp() {
   return (
-    <TreeFolder tree={treeFolder} />
+    <div className={styles.container}>
+      <TreeFolder tree={treeFolder} />
+    </div>
   );
 }

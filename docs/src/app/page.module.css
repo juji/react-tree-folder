@@ -46,8 +46,7 @@ a.docsLink{
     top: 0px;
     left: 0px;
     z-index: 0;
-    /* background-color: rgb(var(--background-rgb) / 60%); */
-    background-color: rgba(22, 22, 22, 60%);
+    background-color: light-dark(rgba(233, 233, 233, 0.6), rgba(22, 22, 22, 60%));
     backdrop-filter: blur(8px);
   }
 
@@ -56,7 +55,7 @@ a.docsLink{
 .footer{
   text-align: center;
   padding: 4rem 0;
-  background: #1f2324;
+  background: light-dark(#b2d826, #1f2324);
   font-size: 0.9rem;
 
   &>div{
