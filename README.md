@@ -1,7 +1,7 @@
 # React Tree Folder
 
 <p style="width: 100%">
-  <img src="https://media.githubusercontent.com/media/juji/react-tree-folder/dev/blob/rtf.gif" 
+  <img src="https://media.githubusercontent.com/media/juji/react-tree-folder/main/blob/rtf.gif" 
     width="750"
     height="auto"
     style="max-width:100%;"
