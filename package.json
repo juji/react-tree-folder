@@ -18,6 +18,11 @@
     "react": "^18",
     "react-dom": "^18"
   },
+  "keywords": [
+    "react",
+    "folder tree",
+    "file tree"
+  ],
   "devDependencies": {
     "@types/react": "^18",
     "@types/react-dom": "^18",
