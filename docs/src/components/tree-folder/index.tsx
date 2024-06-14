@@ -96,8 +96,12 @@ const treeFolder:Tree = [
     ]
   },
   {
-    text: 'empty directory',
-    dir: true
+    text: 'custom directory icon',
+    dir: true,
+    folderIcon: {
+      closed: '📁',
+      open: '📂'
+    }
   },
   {
     text: 'default close',

@@ -61,6 +61,13 @@ export type Branch = {
   // custom icon
   // for files
   icon?: ReactNode 
+
+  // custom icon
+  // for folder
+  folderIcon?: {
+    closed:ReactNode
+    open: ReactNode
+  }
   
   // using onClick will render a button
   onClick?: () => void
@@ -119,9 +126,9 @@ export type ReactTreeWithIconsProps = {
 ```
 <Separator />
 
-## Custom File Icon
+## Custom Icon
 ```tsx
-// Customize how the file icons look like
+// Customize how the file/dir icons look like
 const treeFolder:Tree = [
   {
     text: 'default icon'
@@ -134,6 +141,15 @@ const treeFolder:Tree = [
     text: 'react element as icon',
     icon: <i style={{color:'orange', marginRight: '5px'}}>Hi</i>
   },
+  {
+    text: 'custom folder icon',
+    dir: true,
+    folderIcon: {
+      closed: '📁',
+      open: '📂'
+      // a react element will also work
+    }
+  },
 ]
 
 export function CustomFileIcons() {
@@ -143,9 +159,9 @@ export function CustomFileIcons() {
 }
 ```
 
-### Custom File Icons Result
+### Custom Icons Result
 
-<CustomFileIcons />
+<CustomIcons />
 
 <Separator />
 
@@ -358,9 +374,11 @@ export function ContainerClass() {
 
 <Separator />
 
-## Custom Icon
+## No Icons Variant
 ```tsx
 // use the no-icons variant
+// when you want to use custom icon
+// right from the start
 import { TreeFolder, type Tree } from 'react-tree-folder/dist/no-icons'
 import SvgFileIcon from './svg-file-icon'
 
@@ -385,7 +403,7 @@ export function CustomIcons(){
 ```
 
 ### Custom Icon Result
-<CustomIcons />
+<NoIcons />
 
 <Separator />
 
@@ -413,12 +431,12 @@ Last built locally. The packages built in CI may result in similar sizes.
 
 
 import { SimpleUsageExample } from './simple-usage-example'
-import { CustomFileIcons } from './custom-file-icons'
+import { CustomIcons } from './custom-icons'
 import { OnClickHandler } from "./on-click-handler"
 import { CustomComponent } from "./custom-component"
 import { ContainerClass } from "./container-class"
-import Separator from './separator'
-import { CustomIcons } from "./custom-icons"
+import { NoIcons } from "./no-icons"
 import { CustomColors } from './custom-colors'
 import { ALink } from './link'
+import Separator from './separator'
 

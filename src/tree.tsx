@@ -8,6 +8,10 @@ export type Branch = {
   open?: boolean
   dir?: boolean
   icon?: ReactNode
+  folderIcon?: {
+    closed:ReactNode
+    open: ReactNode
+  }
   onClick?: () => void
   link?:{
     href: string,
@@ -48,7 +52,7 @@ function BranchLine({
 
   const [ open, setOpen ] = useState(branch.open)
   const { 
-    icon, dir, text, 
+    icon, folderIcon, dir, text, 
     branch: children, 
     onClick, link,
     component,
@@ -68,8 +72,8 @@ function BranchLine({
         onClick && onClick()
       }}>
       <span>{ open ? 
-        iconFolderOpen :
-        iconFolder
+        (folderIcon && folderIcon.open ? folderIcon.open : iconFolderOpen) :
+        (folderIcon && folderIcon.closed ? folderIcon.closed : iconFolder)
       }</span>
       {component ? component(text) : <span>{text}</span>}
     </button> : 

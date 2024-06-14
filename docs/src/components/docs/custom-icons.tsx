@@ -1,21 +1,29 @@
-import { TreeFolder, type Tree } from 'react-tree-folder/dist/no-icons'
-import SvgFileIcon from './svg-file-icon'
+import { TreeFolder, type Tree } from 'react-tree-folder'
 
 const treeFolder:Tree = [
   {
-    text: 'open this folder',
+    text: 'default icon'
+  },
+  {
+    text: 'unicode icon',
+    icon: '⚽'
+  },
+  {
+    text: 'react element as icon',
+    icon: <i style={{color:'orange', marginRight: '5px'}}>Hi</i>
+  },
+  {
+    text: 'custom folder icon',
     dir: true,
-    branch: [{ text: 'this is a file '}]
-  }
+    folderIcon: {
+      closed: '📁',
+      open: '📂'
+    }
+  },
 ]
 
-export function CustomIcons(){
-
-  return <TreeFolder 
-    tree={treeFolder}
-    iconFolder={'📁'}
-    iconFolderOpen={'📂'}
-    iconFile={<SvgFileIcon />}
-  />
-
+export function CustomIcons() {
+  return (
+    <TreeFolder tree={treeFolder} />
+  );
 }
