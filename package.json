@@ -1,5 +1,6 @@
 {
   "name": "react-tree-folder",
+  "description": "React folder structure component",
   "version": "0.2.2",
   "type": "module",
   "main": "dist/index.cjs",
